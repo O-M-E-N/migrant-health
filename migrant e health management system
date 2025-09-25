@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Migrant E Card</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Center all content vertically */
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(90deg, #ffaf7b, #d76d77, #3a1c71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(58,28,113,0.2);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      font-weight: 400;
+      color: #ddd;
+      text-align: center;
+    }
+
+    .role-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1000px;
+    }
+
+    .role-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      width: 260px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .role-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .role-title {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .role-desc {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .tagline {
+      margin-top: 50px;
+      font-size: 1rem;
+      color: #eee;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Add login options styles from login.html */
+    .login-options {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .login-card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 32px 24px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .login-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px rgba(52, 152, 219, 0.25);
+    }
+    .login-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #3498db;
+      background: #fff;
+      border-radius: 50%;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    }
+    .login-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .login-desc {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .role-card {
+        width: 90%;
+      }
+      .role-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="window.location.href='landing.html'" style="position: absolute; left: 24px; top: 24px; padding:8px 18px; font-size:1rem; border-radius:8px; border:none; background:#185a9d; color:#fff; cursor:pointer; font-weight:600;">&#8592; Back</button>
+  <h1>Migrant E Card</h1>
+  <h2 id="subtitle">Select Your Role</h2>
+
+  <div class="role-container" id="roleContainer">
+    <div class="role-card" onclick="selectRole('worker')">
+      <div class="role-title">Community Health Worker</div>
+      <div class="role-desc">Conduct surveys and health screenings</div>
+    </div>
+    <div class="role-card" onclick="selectRole('migrant')">
+      <div class="role-title">Migrant Worker</div>
+      <div class="role-desc">Access your health information</div>
+    </div>
+  </div>
+
+  <div id="loginSection" style="display:none;">
+    <h2>Login</h2>
+    <button onclick="goBack()" style="margin-bottom:20px; padding:8px 18px; font-size:1rem; border-radius:8px; border:none; background:#185a9d; color:#fff; cursor:pointer; font-weight:600;">&#8592; Back</button>
+    <div class="login-options">
+      <div class="login-card" onclick="navigate('phone')">
+        <div class="login-icon">&#128241;</div>
+        <div class="login-title">Phone Number</div>
+        <div class="login-desc">Login using your mobile number</div>
+      </div>
+      <div class="login-card" onclick="navigate('abha')">
+        <div class="login-icon">&#128273;</div>
+        <div class="login-title">ABHA Number</div>
+        <div class="login-desc">Login using your ABHA number</div>
+      </div>
+    </div>
+    <div class="tagline">Secure • Reliable • Accessible</div>
+    <div style="margin-top:30px; text-align:center; font-size:1.05rem; color:#fff;">
+      Don't have an ABHA number?
+      <a href="#" style="color:#ff9800; text-decoration:underline; font-weight:600;">Create one</a>
+    </div>
+    <div style="margin-top:12px; text-align:center; font-size:1.05rem; color:#fff;">
+      Don’t have an account?
+      <a href="#" onclick="window.location.href='newregistration.html'" style="color:#00e676; text-decoration:underline; font-weight:700;">Register</a>
+    </div>
+  </div>
+
+  <div class="tagline" id="mainTagline">Secure • Reliable • Accessible</div>
+
+  <script>
+    function selectRole(role) {
+      if (role === 'migrant') {
+        document.getElementById('roleContainer').style.display = 'none';
+        document.getElementById('subtitle').style.display = 'none';
+        document.getElementById('mainTagline').style.display = 'none';
+        document.getElementById('loginSection').style.display = 'block';
+      } else if (role === 'worker') {
+        // Redirect to Community Worker login page
+        window.location.href = 'community worker login.html';
+      } else if (role === 'provider') {
+        // Add provider logic here if needed
+        alert("Provider selected");
+      }
+    }
+    function navigate(option) {
+      if(option === 'phone') {
+        window.location.href = 'migrantregistration.html';
+      } else if(option === 'abha') {
+        alert("You selected: " + option);
+        // window.location.href = /${option}-login.html;
+      }
+    }
+    function goBack() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('roleContainer').style.display = 'flex';
+      document.getElementById('subtitle').style.display = 'block';
+      document.getElementById('mainTagline').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
